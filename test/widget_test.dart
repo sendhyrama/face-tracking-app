@@ -10,10 +10,21 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:face_tracking_app/main.dart';
 
+import 'package:camera/camera.dart';
+
+class MockCamera extends CameraDescription {
+  MockCamera()
+      : super(
+          name: 'MockCamera',
+          lensDirection: CameraLensDirection.back,
+          sensorOrientation: 0,
+        );
+}
+
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(MyApp(camera: MockCamera()));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
